@@ -5,10 +5,6 @@
 using namespace std;
 
 int main() {
-    while (1 < 0) {
-        cout << "oh lo" << endl;
-    }
-    if (3 % 2) {
-        cout << "odd" << endl;
-    }
+    cout << -3 % 3 << endl;
+    
 }

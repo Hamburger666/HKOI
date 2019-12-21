@@ -29,7 +29,10 @@
         "hashtable": "cpp",
         "tuple": "cpp",
         "iostream": "cpp",
-        "type_traits": "cpp"
+        "type_traits": "cpp",
+        "ios": "cpp",
+        "numeric": "cpp",
+        "random": "cpp"
     },
     "cSpell.words": [
         "forn",
