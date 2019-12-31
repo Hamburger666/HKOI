@@ -9,7 +9,15 @@ using namespace std;
 //     cout << "done" << endl;
 // }
 
-vector<int> numbers[100000];
+int ones[100] = {0};
 int main() {
-    cout << (double) 3 / 2 << endl;
+   int i = 0;
+   forn(k, 2) {
+   while (ones[i] == 0) {
+       cout << i << endl;
+       i++;
+   }}
+   cout << ones[i] << endl;
+   cout << ones[100] << endl;
+   cout << i << endl;
 }

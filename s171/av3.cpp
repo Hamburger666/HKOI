@@ -125,10 +125,10 @@ int main() {
             int programSerial = CMark__channel_programSerial[channel] + program;
             programViewDuration__programSerial_duration[programSerial] += channelViews__channel_viewC[channel] * D[programSerial];
             currentProgram__channel_program[channel]++;
-            // cout << "current time: " << time << ", current program: " << currentProgram__channel_program[channel] << ", current channel: " << channel << ", views: " << channelViews__channel_viewC[channel] << endl;
+            cout << "current time: " << time << ", current program: " << currentProgram__channel_program[channel] << ", current channel: " << channel << ", views: " << channelViews__channel_viewC[channel] << endl;
         }
         while (householdCChannel__serial_time[householdCChannelI__serial] == time) {
-            // printf("Current time: %d, previous channel:% d, after channel: %d\n", time, channelBefore__serial_channel[householdCChannelI__serial], channelAfter__serial_channel[householdCChannelI__serial]);
+            printf("Current time: %d, previous channel:% d, after channel: %d\n", time, channelBefore__serial_channel[householdCChannelI__serial], channelAfter__serial_channel[householdCChannelI__serial]);
             if (channelBefore__serial_channel[householdCChannelI__serial] != -1) {
                 int channel = channelBefore__serial_channel[householdCChannelI__serial];
                 int program = currentProgram__channel_program[channel];
