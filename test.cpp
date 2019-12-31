@@ -3,32 +3,13 @@
 #define forn(i, n) for (int i = 0; i < n; i++)
 using namespace std;
 
-class Somenumbers {
-    public:
-    int a, b;
-    Somenumbers() {}
-    Somenumbers(int a, int b) {
-        this->a = a;
-        this->b = b;
-    }
-};
+// vector<int> numbers[100000];
+// int main() {
+//     forn(i, 100000) numbers[i].push_back(0);
+//     cout << "done" << endl;
+// }
 
-main() {
-    vector<Somenumbers> myObjects;
-    clock_t begin = clock();
-    vector<int> myArray[2];
-    forn(i, 10000) {
-        myObjects.push_back(Somenumbers(i, i+1));
-    }
-    clock_t end = clock();
-    cout << double(end - begin) / CLOCKS_PER_SEC << endl;
-
-    begin = clock();
-    forn(i, 10000) {
-        myArray[0].push_back(i);
-        myArray[1].push_back(i+1);
-    }
-    end = clock();
-    cout << double(end - begin) / CLOCKS_PER_SEC << endl;
-
+vector<int> numbers[100000];
+int main() {
+    cout << (double) 3 / 2 << endl;
 }
