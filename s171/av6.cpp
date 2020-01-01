@@ -1,5 +1,5 @@
     #include <bits/stdc++.h>
-    #define forn(i, n) for (int i = 0; i < n; i++)
+    #define forn(i, n) for (long long i = 0; i < n; i++)
     using namespace std;
 
     // D is not the same as the D given in the problem. It is like a flattened 
@@ -7,36 +7,36 @@
     // For example, Di,j given in the problem statement would be D[DMark[i] + j]
 
 
-    int N, M, L;
-    int C[100000], D[100000], DMark[100000], D_size;
-    bool P[100000]; int Q[100000];
-    int T[100000], H[100000], B[100000];
+    long long N, M, L;
+    long long C[100000], D[100000], DMark[100000], D_size;
+    bool P[100000]; long long Q[100000];
+    long long T[100000], H[100000], B[100000];
 
     // Ds is simliar to D, but rather than storing the duration of the program,
     // it stores the time when the program begins.
 
-    int Ds[100000];
-    vector<int> channelChange[86401];
+    long long Ds[100000];
+    vector<long long> channelChange[86401];
 
-    int programOnChannel[100000] = {0};
-    int channelViewCount[100000] = {0};
-    int programViewTime[100000] = {0};
+    long long programOnChannel[100000] = {0};
+    long long channelViewCount[100000] = {0};
+    long long programViewTime[100000] = {0};
     bool householdOn[100000];
-    int householdChannel[100000];
+    long long householdChannel[100000];
 
 
-    int getProgramSerial(int channel, int program) {
+    long long getProgramSerial(long long channel, long long program) {
         return DMark[channel] + program;
     }
 
-    void recordChannelChange(int channelBefore, int channelAfter, int time) {
+    void recordChannelChange(long long channelBefore, long long channelAfter, long long time) {
         if (channelBefore != -1) {
-            int program = programOnChannel[channelBefore];
+            long long program = programOnChannel[channelBefore];
             channelViewCount[channelBefore]--;
             programViewTime[getProgramSerial(channelBefore, program)] += time - Ds[getProgramSerial(channelBefore, program)];
         }
         if (channelAfter != -1) {
-            int program = programOnChannel[channelAfter];
+            long long program = programOnChannel[channelAfter];
             channelViewCount[channelAfter]++;
             programViewTime[getProgramSerial(channelAfter, program)] -= time - Ds[getProgramSerial(channelAfter, program)];
         }
@@ -72,7 +72,7 @@
                     else:
                         do nothing
         
-        print the result
+        prlong long the result
         */
         cin >> N >> M >> L;
         D_size = 0;
@@ -100,7 +100,7 @@
         }
 
         forn(channel, N) {
-            int time = 0;
+            long long time = 0;
             forn(program, C[channel]) {
                 Ds[getProgramSerial(channel, program)] = time;
                 time += D[getProgramSerial(channel, program)];
@@ -108,7 +108,7 @@
         }
 
         forn(channel, N) {
-            for (int program = 1; program < C[channel]; program++) {
+            for (long long program = 1; program < C[channel]; program++) {
                 channelChange[Ds[getProgramSerial(channel, program)]].push_back(channel);
             }
             channelChange[86400].push_back(channel); // so by the end everything resets
@@ -122,11 +122,11 @@
             }
         }
 
-        int event = 0;
+        long long event = 0;
         forn(time, 86401) {
             forn(i, channelChange[time].size()) {
-                int programBefore = programOnChannel[channelChange[time][i]];
-                printf("channel view count: %d\n", channelViewCount[channelChange[time][i]]);
+                long long programBefore = programOnChannel[channelChange[time][i]];
+                // printf("channel view count: %d\n", channelViewCount[channelChange[time][i]]);
                 programViewTime[getProgramSerial(channelChange[time][i], programBefore)] += channelViewCount[channelChange[time][i]] * D[getProgramSerial(channelChange[time][i], programBefore)];
                 programOnChannel[channelChange[time][i]]++;
             }
@@ -149,10 +149,13 @@
             }
         }
 
+        cout << fixed;
+        cout << setprecision(30);
         forn(channel, N) {
             forn(program, C[channel]) {
-                int programSerial = getProgramSerial(channel, program);
-                cout << (double) programViewTime[programSerial] / D[programSerial] << " ";
+                long long programSerial = getProgramSerial(channel, program);
+                double output = (double) programViewTime[programSerial] / D[programSerial];
+                cout << output << " ";
             }
             cout << endl;
         }

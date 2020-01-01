@@ -11,8 +11,7 @@ using namespace std;
 
 int ones[100] = {0};
 int main() {
-    vector<int> numbers[86400];
-    forn(i, 100000) {
-        numbers[0].push_back(10);
-    }
+    cout << fixed;
+    cout << setprecision(20);
+    cout << (double) 200000;
 }
