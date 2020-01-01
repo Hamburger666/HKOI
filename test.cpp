@@ -11,13 +11,8 @@ using namespace std;
 
 int ones[100] = {0};
 int main() {
-   int i = 0;
-   forn(k, 2) {
-   while (ones[i] == 0) {
-       cout << i << endl;
-       i++;
-   }}
-   cout << ones[i] << endl;
-   cout << ones[100] << endl;
-   cout << i << endl;
+    vector<int> numbers[86400];
+    forn(i, 100000) {
+        numbers[0].push_back(10);
+    }
 }
