@@ -1,17 +1,25 @@
-#include <iostream>
 #include <bits/stdc++.h>
 #define forn(i, n) for (int i = 0; i < n; i++)
 using namespace std;
 
-// vector<int> numbers[100000];
-// int main() {
-//     forn(i, 100000) numbers[i].push_back(0);
-//     cout << "done" << endl;
-// }
+unordered_set<int> c;
+vector<int> v;
+vector<int> v2;
+int a[100000];
+unordered_map<int, int> m;
 
-int ones[100] = {0};
 int main() {
-    cout << fixed;
-    cout << setprecision(20);
-    cout << (double) 200000;
+    time_t begin = clock();
+    forn(i, 1000000) {
+        m[i] = i+2;
+    }
+    time_t end = clock();
+    cout << (double) (end - begin) / CLOCKS_PER_SEC << endl;
+
+    begin = clock();
+    if (m.find(500000) != m.end())  {
+        cout << "True" << endl;
+    }
+    end = clock();
+    cout << (double) (end - begin) /CLOCKS_PER_SEC << endl;
 }
