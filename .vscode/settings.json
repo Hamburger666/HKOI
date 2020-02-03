@@ -86,7 +86,8 @@
         "thread": "cpp",
         "typeindex": "cpp",
         "typeinfo": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "__tree": "cpp"
     },
     "cSpell.words": [
         "forn",
