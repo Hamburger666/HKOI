@@ -1,0 +1,6 @@
+5
+      "    Music is my very forte" Cut "very "
+"Oh when the saints go marching" Append " in"
+"I to be in the number" Insert 1 "want "
+"See spot spot run" Replace "spot" "Spot"
+"Run Spot run" Cut "doesn't exist"
