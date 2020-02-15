@@ -105,7 +105,7 @@ int main() {
             }
         }
 
-        rc cg = {r/2, c/3};
+        rc cg = {r/2, c/2};
         rc cs = {0, 0};
         ll cost = minCorner(cg, cs, pg, ps);
         if (cost >= maxcost) {

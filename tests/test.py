@@ -1,9 +1,12 @@
-if __name__ == "__main__":
-    file = open("input.txt", "w")
-    file.write("80 9 9 79\n")
-    for layer in range(80):
-        for element in range(layer + 1):   
-            file.write("128 ")
-        file.write("\n")
-
-
+n = input()
+x = ''
+y = '____________________'
+x = y[:len(n)]
+while x != n:
+	c = input()
+	x = list(x)
+	for i in range(len(n)):
+		if c == n[i]:
+			x[i] = n[i]
+	x = ''.join(x)
+	print(x)
