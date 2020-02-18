@@ -1,12 +1,9 @@
-n = input()
-x = ''
-y = '____________________'
-x = y[:len(n)]
-while x != n:
-	c = input()
-	x = list(x)
-	for i in range(len(n)):
-		if c == n[i]:
-			x[i] = n[i]
-	x = ''.join(x)
-	print(x)
+import random
+s = set()
+while len(s) != 5:
+    s.add(random.randrange(10))
+print(s)
+sum=0
+for x in s:
+    sum+=x
+print(sum/5)
