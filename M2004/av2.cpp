@@ -8,8 +8,8 @@ typedef long long ll;
 
 ll N, M;
 ll A[300000],B[300000], X[300000];
-ll factors[100001];
-ll mm[100001], mc = 0, total=0;
+ll factors[1000001];
+ll mm[1000001], mc = 0, total=0;
 
 ll gcd(ll a, ll b){
     while(b!=0){
@@ -42,9 +42,12 @@ int main() {
     forn(i,M){
         factors[X[i]] = true;
     }
-    form(i,100000){
-        for(int j = i; j <= 100000; j+=i){
-            if (factors[j]) factors[i]=true;
+    form(i,100){
+        for(int j = i; j <= 100; j+=i){
+            if (factors[j]) {
+                factors[i]=true;
+                // factors[j%i]=true;
+            }
         }
     }
     total+=M;
@@ -69,7 +72,7 @@ int main() {
     if(total==N){
         cout << mc+1 << endl;
         cout << g << " <>" << endl;
-        forn(i,100000){
+        forn(i,1000000){
             if(mm[i]) cout << i << " =" << endl;
         }
     } else {

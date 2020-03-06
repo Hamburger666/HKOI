@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <unordered_map>
 #define forn(i, n) for (int i = 0; i < n; i++)
 using namespace std;
 typedef long long ll;
@@ -21,6 +22,8 @@ struct ab {
     }
 };
 int main() {
-    ll a[4] = {0, 1, 2, 4};
-    cout << findbi(a, 0, 0, 4) << endl;
+    unordered_map<ll, ll> a;
+    // a[2] = 123;
+    a[2]++;
+    cout << a[2] << endl;
 }
