@@ -4,6 +4,7 @@
 #include <vector>
 #include <unordered_map>
 #include <vector>
+#include <bitset>
 #define forn(i, n) for (int i = 0; i < n; i++)
 using namespace std;
 typedef long long ll;
@@ -23,14 +24,18 @@ struct ab {
     }
 };
 
-// vector<ll> a;
-ll a[100000000];
-int main() {
-    // a.reserve(100000000);
-    ll i = 0;
-    forn(b, 100000000) {
-        a[b] = 29;
-        i++;
-    }
-    cout << i << endl;
+vector<ll> a;
+int c() {
+    return g() + 4;
 }
+int g() {
+    return c();
+}
+
+int main() {
+    forn(i, 1000000) {
+        int a = 2+2;
+    }
+    cout << c() << endl;
+}
+

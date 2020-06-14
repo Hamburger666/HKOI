@@ -1,9 +1,10 @@
-import random
-s = set()
-while len(s) != 5:
-    s.add(random.randrange(10))
-print(s)
-sum=0
-for x in s:
-    sum+=x
-print(sum/5)
+import time
+import progressbar
+
+with progressbar.ProgressBar(max_value=100) as bar:
+    for i in range(102):
+        time.sleep(0.01)
+        try:
+            bar.update(i)
+        except:
+            pass

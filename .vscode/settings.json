@@ -89,11 +89,22 @@
         "valarray": "cpp",
         "__tree": "cpp",
         "__config": "cpp",
-        "__cxx_version": "cpp"
+        "__cxx_version": "cpp",
+        "__bit_reference": "cpp",
+        "__debug": "cpp",
+        "__errc": "cpp",
+        "__functional_base": "cpp",
+        "__mutex_base": "cpp",
+        "__node_handle": "cpp",
+        "__nullptr": "cpp",
+        "__string": "cpp",
+        "__threading_support": "cpp",
+        "__tuple": "cpp",
+        "bit": "cpp",
+        "filesystem": "cpp"
     },
     "cSpell.words": [
-        "forn",
-        "rowi"
+        "forn"
     ],
     "maven.view": "hierarchical"
 }
