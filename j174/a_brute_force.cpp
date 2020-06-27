@@ -1,60 +1,87 @@
 #include <iostream>
+#include <unordered_set>
+using namespace std;
 #define forn(i, n) for (long long i = 0; i < n; i++)
 #define form(i, n) for (long long i = 1; i <= n; i++)
 typedef long long ll;
-using namespace std;
+typedef pair<ll, ll> pll;
+
 
 ll X, Y, K;
-bool g[3001][3001] = {0};
-bool gt[3001][3001] = {0};
-void printg() {
-    forn(_, Y+1) {
-        ll y = Y - _;
-        forn(x, X+1) {
-            cout << g[x][y] << " ";
-        }
-        cout << endl;
-    }
+ll ans;
+unordered_set<ll> points;
+
+ll ep(ll x, ll y) {
+    return x * (Y+1) + y;
+} 
+
+pll dp(ll n) {
+    pll p;
+    p.first = n / (Y+1);
+    p.second = n % (Y+1);
+    return p;
 }
+
+bool hp(ll x, ll y) {
+    return points.find(ep(x, y)) != points.end();
+}
+
+ll cs(double cx, double cy) {
+    ll ans = 0;
+    if ((ll)(cx) == cx){
+        ll kc = 0;
+        if (hp((ll)cx, (ll)cy)) {
+            kc++;
+        }
+        for (ll r = 1; r <= min(min(cx, X - cx), min(cy, Y - cy)); r++) {
+            ll x = (ll)(cx - r);
+            ll y = (ll)(cy - r);
+            ll xb = (ll)(cx + r);
+            ll yb = (ll)(cy + r);
+            kc += hp(x, y);
+            kc += hp(x, yb);
+            kc += hp(xb, y);
+            kc += hp(xb, yb);
+            if (kc == K) {
+                ans++;
+            }            
+        }
+    } else {
+        ll kc = 0;
+        for (double r = 0.5; r <= min(min(cx, X - cx), min(cy, Y - cy)); r += 1) {
+            ll x = (ll)(cx - r);
+            ll y = (ll)(cy - r);
+            ll xb = (ll)(cx + r);
+            ll yb = (ll)(cy + r);
+            kc += hp(x, y);
+            kc += hp(x, yb);
+            kc += hp(xb, y);
+            kc += hp(xb, yb);
+            if (kc == K) {
+                ans++;
+            }            
+        }
+    }
+    return ans;
+}
+
 int main() {
     cin >> X >> Y >> K;
-    if (K == 0) {
-        ll re = 0;
-        forn(i, min(X, Y)) {
-            re += (X - i) * (Y - i);
-        }
-        cout << re << endl;
-        return 0;
-    } else {
-        forn(i, K) {
-            ll x, y;
-            cin >> x >> y;
-            g[x][y] = true;
-        }
-        ll re = 0;
-        form(i, min(X, Y)) {
-            forn(x0, X-i+1) {
-                forn(y0, Y - i+1) {
-                    forn(i, X+1) forn(k, Y+1) {
-                        gt[i][k] = false;
-                    }
-                    ll cn = 0;
-                    forn(l, i+1) {
-                        if (g[x0 + l][y0 + l] && !gt[x0 + l][y0 + l]) {
-                            gt[x0 + l][y0 + l] = true;
-                            cn++;
-                        }
-                        if (g[x0 + l][y0 + i - l] && !gt[x0 + l][y0 + i - l]) {
-                            gt[x0 + l][y0 + i - l] = true;
-                            cn++;
-                        }
-                    }
-                    if (cn == K) {
-                        re++;
-                    }
-                }
-            }
-        }
-        cout << re << endl;
+    forn(i, K) {
+        ll x, y;
+        cin >> x >> y;
+        points.insert(ep(x, y));
     }
+
+    for (ll cx = 1; cx <= X - 1; cx++) {
+        for (ll cy = 1; cy <= Y - 1; cy++) {
+            ans += cs(cx, cy);
+        }
+    }
+    for (double cx = 0.5; cx <= X - 0.5; cx += 1) {
+        for (double cy = 0.5; cy <= Y - 0.5; cy += 1) {
+            ans += cs(cx, cy);
+        }
+    }
+    cout << ans;
 }

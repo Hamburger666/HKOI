@@ -6,6 +6,8 @@
 #include <unordered_set>
 #include <vector>
 #include <bitset>
+#include <algorithm>
+#include <functional>
 #define forn(i, n) for (int i = 0; i < n; i++)
 using namespace std;
 typedef long long ll;
@@ -30,12 +32,46 @@ void pp(pair<ll, ll> p) {
     cout << p.first << ' ' << p.second << endl;
 }
 unordered_set<ll> s;
-int main() {
-    s.insert(2);
-    s.insert(2);
-    s.insert(3);
-    for (unordered_set<ll>::iterator i = s.begin(); i != s.end(); i++) {
-        cout << *i << endl;
+vector<ll> vc;
+ll N = 5;
+
+void next(ll& i) {
+    i++;
+    if (i == N) {
+        i = 0;
     }
+}
+
+bool ic(vector<ll> numbers) {
+    bool nsg[N];
+    forn (i, N) {
+        nsg[i] = false;
+    }
+    for (ll n : numbers) {
+        nsg[n] = true;
+    }
+    ll i = 0;
+    while(nsg[i]) {
+        cout << i << endl;
+        next(i);
+    }
+    cout << "b1" << endl;
+    while(!nsg[i]) {
+        cout << i << endl;
+        next(i);
+    }
+    cout << "b2" << endl;
+    ll c = 0;
+    while(nsg[i]) {
+        cout << i << endl;
+        c++;
+        next(i);
+    }
+    return (c == numbers.size());
+}
+
+unordered_map<ll, ll> m;
+int main() {
+    cout << m[1203] << endl;
 }
 
