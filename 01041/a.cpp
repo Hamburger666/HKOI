@@ -2,46 +2,81 @@
 #include <vector>
 #include <queue>
 #include <stack>
+#include <stdexcept>
 #define forn(i, n) for (long long i = 0; i < n; i++)
 #define INF 1001
 using namespace std;
 typedef long long ll;
+typedef pair<ll, ll> pll;
 
 ll N;
-vector<pair<ll, ll> > cities[1000]; 
+vector<pair<ll, ll> > cities[1000]; // {to, dist}
 ll source, dest;
 ll dist[1000];
 bool fin[1000];
 ll pre[1000];
-priority_queue<pair<ll, pair<ll, ll> > > toFinalise; // {dist, {from, to}}
+priority_queue<pll> toFinalise; // {dist, two}
 stack<ll> path;
 
-void dijkstra2(ll source) {
-    forn(i, N) {
+void dijkstraLong(ll source) {
+    forn (i, N) {
+        fin[i] = false;
+    }
+    forn (i, N) {
         dist[i] = INF;
     }
     dist[source] = 0;
-    toFinalise.push(make_pair(0, make_pair(source, source)));
+    ll fin_n = 0;
+    while(fin_n < N) {
+        ll minD, minDC;
+        minD = INF;
+        forn (i, N) {
+            if (!fin[i] && dist[i] < minD) {
+                minD = dist[i];
+                minDC = i;
+            }
+        }
+        fin[minDC] = true;
+        fin_n++;
+        for (pll t : cities[minDC]) {
+            ll two = t.first;
+            ll d = t.second;
+            if (!fin[two] && dist[minDC] + d < dist[two]) {
+                dist[two] = dist[minDC] + d;
+                pre[two] = minDC;
+            }
+        }
+    }
+}
+
+void dijkstra(ll source) {
+    forn (i, N) {
+        fin[i] = false;
+    }
+    forn (i, N) {
+        dist[i] = INF;
+    }
+    dist[source] = 0;
+    toFinalise.push(make_pair(0, source));
     while (!toFinalise.empty()) {
-        pair<ll, ll> c = toFinalise.top().second;
-        ll one = c.first;
-        ll two = c.second;
+        ll one = toFinalise.top().second;
         toFinalise.pop();
         if (!fin[one]) {
             fin[one] = true;
-            pre[one] = two;
-            for (pair<ll, ll> c : cities[one]) {
-                ll two = c.first;
-                ll d = c.second;
-                if (!fin[two] && dist[one] + c.second < dist[two]) {
+            for (pll t : cities[one]) {
+                ll two = t.first;
+                ll d = t.second;
+                if (!fin[two] && dist[one] + d < dist[two]) {
+                    dist[two] = dist[one] + d;
                     pre[two] = one;
-                    dist[two] = dist[one] + c.second;
-                    toFinalise.push(make_pair(dist[two], make_pair(one, two)));
+                    toFinalise.push(make_pair(-dist[two], two));
                 }
             }
         }
     }
 }
+
+
 int main() {
     cin >> N;
     cin >> source >> dest;
@@ -56,17 +91,18 @@ int main() {
         cities[b].push_back(make_pair(a, d));
         cin >> a >> b >> d;
     }
-    dijkstra2(source);
-    cout << dist[dest] << endl;
+    dijkstra(source);
+    cout << dist[dest] << endl;;
+    stack<ll> path;
     ll k = dest;
-    while (k != source) {
-        path.push(k);
-        k = pre[k];
-    }
-    cout << source + 1 << " ";
-    while (!path.empty()) {
-        cout << path.top() + 1 << " ";
-        path.pop();
-    }
+    // while (k != source) {
+    //     path.push(k);
+    //     k = pre[k];
+    // }
+    // path.push(source);
+    // while (!path.empty()) {
+    //     cout << path.top() + 1 << " ";
+    //     path.pop();
+    // }
     cout << endl;
 }

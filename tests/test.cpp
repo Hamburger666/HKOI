@@ -9,6 +9,7 @@
 #include <algorithm>
 #include <functional>
 #include <stack>
+#include <queue>
 #define forn(i, n) for (int i = 0; i < n; i++)
 using namespace std;
 typedef long long ll;
@@ -71,14 +72,16 @@ bool ic(vector<ll> numbers) {
     return (c == numbers.size());
 }
 
-stack<ll> m;
+priority_queue<pll, vector<pll>, greater<pll> > q;
 int main() {
-    forn(i, 1000) {
-        m.push(i);
-    }
-    while(!m.empty()) {
-        cout << m.top() << " ";
-        m.pop();
+    q.push(make_pair(3, 14));
+    q.push(make_pair(1, 12));
+    q.push(make_pair(2, 13));
+    while(!q.empty()) {
+        pair<ll, ll> c;
+        c = q.top();
+        q.pop();
+        cout << c.first << " " << c.second << endl;
     }
 }
 
