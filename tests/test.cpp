@@ -8,6 +8,7 @@
 #include <bitset>
 #include <algorithm>
 #include <functional>
+#include <stack>
 #define forn(i, n) for (int i = 0; i < n; i++)
 using namespace std;
 typedef long long ll;
@@ -70,8 +71,14 @@ bool ic(vector<ll> numbers) {
     return (c == numbers.size());
 }
 
-unordered_map<ll, ll> m;
+stack<ll> m;
 int main() {
-    cout << m[1203] << endl;
+    forn(i, 1000) {
+        m.push(i);
+    }
+    while(!m.empty()) {
+        cout << m.top() << " ";
+        m.pop();
+    }
 }
 
