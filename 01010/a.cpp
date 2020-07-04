@@ -10,15 +10,15 @@ ll mdm[100000];
 bool mdmb[100000];
 
 ll md(ll v) {
-    if (v == -1) {
-        return 0;
+    if (v == 0) {
+        mdm[v] = diamonds[v];
     } else {
         if (!mdmb[v]) {
             mdm[v] = max(diamonds[v], md(v-1) + diamonds[v]);
             mdmb[v] = true;
         } 
-        return mdm[v];
     }
+    return mdm[v];
 }
 
 int main() {
