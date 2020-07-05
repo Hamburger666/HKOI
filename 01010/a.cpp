@@ -9,16 +9,17 @@ ll diamonds[100000];
 ll mdm[100000];
 bool mdmb[100000];
 
-ll md(ll v) {
-    if (v == 0) {
-        mdm[v] = diamonds[v];
+ll md(ll v, ll depth) {
+    if (depth == N) {
+        return 0;
     } else {
         if (!mdmb[v]) {
-            mdm[v] = max(diamonds[v], md(v-1) + diamonds[v]);
+            mdm[v] = max(diamonds[v], md(v-1, depth + 1) + diamonds[v]);
             mdmb[v] = true;
         } 
+        return mdm[v];
     }
-    return mdm[v];
+
 }
 
 int main() {
@@ -28,8 +29,8 @@ int main() {
     }
     ll maxD = 0;
     forn(i, N) {
-        if (md(i) > maxD) {
-            maxD = md(i);
+        if (md(i, 0) > maxD) {
+            maxD = md(i, 0);
         }
     }
     cout << maxD << endl;

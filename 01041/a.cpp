@@ -4,7 +4,7 @@
 #include <stack>
 #include <stdexcept>
 #define forn(i, n) for (long long i = 0; i < n; i++)
-#define INF 1001
+#define INF 1000001
 using namespace std;
 typedef long long ll;
 typedef pair<ll, ll> pll;
@@ -95,14 +95,14 @@ int main() {
     cout << dist[dest] << endl;;
     stack<ll> path;
     ll k = dest;
-    // while (k != source) {
-    //     path.push(k);
-    //     k = pre[k];
-    // }
-    // path.push(source);
-    // while (!path.empty()) {
-    //     cout << path.top() + 1 << " ";
-    //     path.pop();
-    // }
+    while (k != source) {
+        path.push(k);
+        k = pre[k];
+    }
+    path.push(source);
+    while (!path.empty()) {
+        cout << path.top() + 1 << " ";
+        path.pop();
+    }
     cout << endl;
 }
