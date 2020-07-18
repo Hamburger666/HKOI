@@ -1,87 +1,14 @@
-#include <stdexcept>
 #include <iostream>
-#include <string>
-#include <vector>
-#include <unordered_map>
-#include <unordered_set>
-#include <vector>
-#include <bitset>
-#include <algorithm>
-#include <functional>
-#include <stack>
+#include <tuple>
 #include <queue>
-#define forn(i, n) for (int i = 0; i < n; i++)
+#include <array>
 using namespace std;
-typedef long long ll;
-typedef pair<ll, ll> pll;
+typedef long long ll; 
 
-
-ll findbi(ll *l,ll n,ll left,ll right) {
-    if (right-left<=1) return right;
-    ll m=(left+right)/2;
-    if(l[left]<=n&&n<l[m])return findbi(l,n,left,m);
-    else return findbi(l,n,m,right);
-}
-
-struct ab {
-    long long a, b;
-    bool operator== (ab x) {
-        return ((a == x.a) && (b == x.b));
-    }
-};
-
-void pp(pair<ll, ll> p) {
-    cout << p.first << ' ' << p.second << endl;
-}
-unordered_set<ll> s;
-vector<ll> vc;
-ll N = 5;
-
-void next(ll& i) {
-    i++;
-    if (i == N) {
-        i = 0;
-    }
-}
-
-bool ic(vector<ll> numbers) {
-    bool nsg[N];
-    forn (i, N) {
-        nsg[i] = false;
-    }
-    for (ll n : numbers) {
-        nsg[n] = true;
-    }
-    ll i = 0;
-    while(nsg[i]) {
-        cout << i << endl;
-        next(i);
-    }
-    cout << "b1" << endl;
-    while(!nsg[i]) {
-        cout << i << endl;
-        next(i);
-    }
-    cout << "b2" << endl;
-    ll c = 0;
-    while(nsg[i]) {
-        cout << i << endl;
-        c++;
-        next(i);
-    }
-    return (c == numbers.size());
-}
-
-priority_queue<pll, vector<pll>, greater<pll> > q;
+priority_queue<pair<ll, array<ll, 3> > > gg;
 int main() {
-    q.push(make_pair(3, 14));
-    q.push(make_pair(1, 12));
-    q.push(make_pair(2, 13));
-    while(!q.empty()) {
-        pair<ll, ll> c;
-        c = q.top();
-        q.pop();
-        cout << c.first << " " << c.second << endl;
+    ll a = 15;
+    for(; a <19; a++) {
+        cout << "hi" << endl;
     }
 }
-
