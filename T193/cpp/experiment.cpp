@@ -73,5 +73,5 @@ void experiment(int N) {
 	forn(i, N) {
 		ans2[i] = ans[i];
 	}
-	
+	answer(ans2);
 }
